@@ -8,22 +8,13 @@ import cursojava.constantes.StatusAluno;
 /**
  * Classe que representa um Aluno
  */
-public class Aluno {
+public class Aluno extends Pessoa{
 
 	// Atributos da classe Aluno
-	private String nome;
-	private int idade;
-	private String dataNascimento;
-	private String registroGeral;
-	private String numeroCpf;
-	private String nomeMae;
-	private String nomePai;
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
-
-	// Objeto que contém a lista de disciplinas e notas do aluno
-	private List<Disciplina> disciplinas = new ArrayList<>();
+	private List<Disciplina> disciplinas = new ArrayList<>(); // Objeto que contém a lista de disciplinas e notas do aluno
 
 	// Construtor vazio do objeto (padrão)
 	public Aluno() {
@@ -206,4 +197,13 @@ public class Aluno {
 		return true;
 	}
 
+	/*Identifica metodo sobreescrito*/
+	@Override
+	public boolean pessoaMaiorIdade() {
+		return idade >= 21;
+	}
+
+	public String msgMaiorIdade(){
+		return this.pessoaMaiorIdade() ? "De maior" : "De menor";
+	};
 }
