@@ -14,28 +14,33 @@ public class Aluno extends Pessoa{
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
-	private List<Disciplina> disciplinas = new ArrayList<>(); // Objeto que contém a lista de disciplinas e notas do aluno
+	private List<Disciplina> disciplinas = new ArrayList<>(); // Objeto que contï¿½m a lista de disciplinas e notas do aluno
 
-	// Construtor vazio do objeto (padrão)
+	// Construtor vazio do objeto (padrï¿½o)
 	public Aluno() {
 
 	}
 
-	// Construtor de parâmetro único
+	// Construtor de parï¿½metro ï¿½nico
 	public Aluno(String nomePadrao) {
 		nome = nomePadrao;
 	}
 
-	// Construtor de dois parâmetros
+	// Construtor de dois parï¿½metros
 	public Aluno(String nomePadrao, int idadePadrao) {
 		nome = nomePadrao;
 		idade = idadePadrao;
 	}
 
-	// Métodos Setters e Getters
+	// Mï¿½todos Setters e Getters
 	// SET - Atribui valor aos atributos | GET - recupera o valor dos atributos
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Override
+	public double salario() {
+		return 0;
 	}
 
 	public String getNome() {
@@ -122,7 +127,7 @@ public class Aluno extends Pessoa{
 		this.disciplinas = disciplinas;
 	}
 
-	// Método que calcula e retorna a média das notas do aluno
+	// Mï¿½todo que calcula e retorna a mï¿½dia das notas do aluno
 	public double getMediaNota() {
 
 		double somaNotas = 0.0;
@@ -134,7 +139,7 @@ public class Aluno extends Pessoa{
 		return somaNotas / disciplinas.size();
 	}
 
-	// Método que retorna se o aluno foi aprovado ou não (BOOLEAN)
+	// Mï¿½todo que retorna se o aluno foi aprovado ou nï¿½o (BOOLEAN)
 	public boolean getAlunoAprovadoBoolean() {
 		double media = this.getMediaNota();
 		if (media >= 70) { // Aprovado
@@ -144,7 +149,7 @@ public class Aluno extends Pessoa{
 		}
 	}
 
-	// Método que retorna se o aluno foi aprovado ou não (STRING)
+	// Mï¿½todo que retorna se o aluno foi aprovado ou nï¿½o (STRING)
 	public String getAlunoAprovadoString() {
 		double media = this.getMediaNota();
 		if (media >= 50) {

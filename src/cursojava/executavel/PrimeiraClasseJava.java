@@ -1,8 +1,10 @@
 package cursojava.executavel;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -16,122 +18,146 @@ import jdk.net.SocketFlow;
 
 public class PrimeiraClasseJava {
 
-	/**
-	 * Método padrão que executa os programas escritos em Java
-	 */
-	public static void main(String[] args) {
+    /**
+     * Método padrão que executa os programas escritos em Java
+     */
+    public static void main(String[] args) {
 
-			String login = JOptionPane.showInputDialog("Informe o login: ");
-			String senha = JOptionPane.showInputDialog("Informe a senha: ");
+        try {
 
-		FuncaoAutenticacao autenticacao = new FuncaoAutenticacao();
+            String login = JOptionPane.showInputDialog("Informe o login: ");
+            String senha = JOptionPane.showInputDialog("Informe a senha: ");
 
-			PermitirAcesso permitirAcesso = new Secretario(login,senha);
+            File fil = new File("meuArquivo.txt");
+            Scanner scanner = new Scanner(fil);
 
-			if(autenticacao.autenticarCursoJava(permitirAcesso)){ /*Vou travar o contrato para autorizar somente quem realmente tem o contrato 100% legitimo*/
+            FuncaoAutenticacao autenticacao = new FuncaoAutenticacao();
 
-			List<Aluno> alunos = new ArrayList<>();
+            PermitirAcesso permitirAcesso = new Secretario(login, senha);
 
-			/*É uma lista que dentro temos uma chave que identifica uma sequencia de valores tambem*/
-			HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
+            if (autenticacao.autenticarCursoJava(permitirAcesso)) { /*Vou travar o contrato para autorizar somente quem realmente tem o contrato 100% legitimo*/
 
-			for(int qtd = 1; qtd <= 5; qtd ++) {
-				
-				// new Aluno() é uma instância da classe Aluno (criação do objeto)
-				// aluno1 é uma referência para o objeto
-				
-				// Entrada de dados com o teclado (Dados do aluno)
-				String nome = JOptionPane.showInputDialog("Digite o nome do aluno " + qtd + " :");
-				/*String idade = JOptionPane.showInputDialog("Digite a idade do aluno:");
-				String dataNascimento = JOptionPane.showInputDialog("Digite a data de nascimento do aluno:");
+                //List<Aluno> alunos = new ArrayList<>();
+                List<Aluno> alunos = null;
+				List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
+                /*É uma lista que dentro temos uma chave que identifica uma sequencia de valores tambem*/
+                HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
+
+                for (int qtd = 1; qtd <= 5; qtd++) {
+
+                    // new Aluno() é uma instância da classe Aluno (criação do objeto)
+                    // aluno1 é uma referência para o objeto
+
+                    // Entrada de dados com o teclado (Dados do aluno)
+                    String nome = JOptionPane.showInputDialog("Digite o nome do aluno " + qtd + " :");
+                    String idade = JOptionPane.showInputDialog("Digite a idade do aluno:");
+				/*String dataNascimento = JOptionPane.showInputDialog("Digite a data de nascimento do aluno:");
 				String rg = JOptionPane.showInputDialog("Digite o RG do aluno:");
 				String cpf = JOptionPane.showInputDialog("Digite o CPF do aluno:");
 				String nomeMae = JOptionPane.showInputDialog("Digite o nome da mãe do aluno:");
 				String nomePai = JOptionPane.showInputDialog("Digite o nome do pai do aluno:");
 				String dataMatricula = JOptionPane.showInputDialog("Digite a data da matrícula do aluno:");
 				String serieMatriculado = JOptionPane.showInputDialog("Digite a série do aluno:");
-				String nomeEscola = JOptionPane.showInputDialog("Digite o nome da escola do aluno:");	*/			
-				
-				Aluno aluno1 = new Aluno();
-				
-				// Dados do aluno1
-				aluno1.setNome(nome);
-				/*aluno1.setIdade(Integer.valueOf(idade));
-				aluno1.setDataNascimento(dataNascimento);
-				aluno1.setRegistroGeral(rg);
-				aluno1.setNumeroCpf(cpf);
-				aluno1.setNomeMae(nomeMae);
-				aluno1.setNomePai(nomePai);
-				aluno1.setDataMatricula(dataMatricula);
-				aluno1.setSerieMatriculado(serieMatriculado);
-				aluno1.setNomeEscola(nomeEscola);*/
+				String nomeEscola = JOptionPane.showInputDialog("Digite o nome da escola do aluno:");	*/
 
-				for (int pos = 1; pos <= 1; pos++) {
+                    Aluno aluno1 = new Aluno();
 
-					String nomeDisciplina = JOptionPane.showInputDialog("Digite o nome da " + pos + "º disciplina:");
-					String notaDisciplina = JOptionPane.showInputDialog("Digite a nota da " + pos + "º disciplina:");
+                    // Dados do aluno1
+                    aluno1.setNome(nome);
+                    aluno1.setIdade(Integer.valueOf(idade));
+					/*aluno1.setDataNascimento(dataNascimento);
+					aluno1.setRegistroGeral(rg);
+					aluno1.setNumeroCpf(cpf);
+					aluno1.setNomeMae(nomeMae);
+					aluno1.setNomePai(nomePai);
+					aluno1.setDataMatricula(dataMatricula);
+					aluno1.setSerieMatriculado(serieMatriculado);
+					aluno1.setNomeEscola(nomeEscola);*/
 
-					Disciplina disciplina = new Disciplina();
-					disciplina.setDisciplina(nomeDisciplina);
-					disciplina.setNota(Double.valueOf(notaDisciplina));
+                    for (int pos = 1; pos <= 1; pos++) {
 
-					aluno1.getDisciplinas().add(disciplina);
-				}
-				
-				int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
-				
-				if (escolha == 0) { // Opção SIM = 0
-					
-					int continuarRemover = 0;
-					int posicao = 1;
-					
-					while (continuarRemover == 0) {
-						String disciplinaRemover = JOptionPane.showInputDialog(null, "Informe a disciplina a ser removida [1, 2, 3 ou 4]");
-						aluno1.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - posicao);
-						posicao ++; // Incremente 1 ao valor atual da variável posicao
-						continuarRemover = JOptionPane.showConfirmDialog(null, "Deseja continuar a remover?");
-					}			
-				}
-				
-				alunos.add(aluno1);
-			}
+                        String nomeDisciplina = JOptionPane.showInputDialog("Digite o nome da " + pos + "º disciplina:");
+                        String notaDisciplina = JOptionPane.showInputDialog("Digite a nota da " + pos + "º disciplina:");
 
-			maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
-			maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
-			maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+                        Disciplina disciplina = new Disciplina();
+                        disciplina.setDisciplina(nomeDisciplina);
+                        disciplina.setNota(Double.valueOf(notaDisciplina));
 
-		for (Aluno aluno:alunos) { /* Separado em listas */
+                        aluno1.getDisciplinas().add(disciplina);
+                    }
 
-			if(aluno.getAlunoAprovadoString().equalsIgnoreCase(StatusAluno.APROVADO)){
-				maps.get(StatusAluno.APROVADO).add(aluno);
-			}else if(aluno.getAlunoAprovadoString().equalsIgnoreCase(StatusAluno.RECUPERACAO)){
-				maps.get(StatusAluno.RECUPERACAO).add(aluno);
-			}else{
-				maps.get(StatusAluno.REPROVADO).add(aluno);
-			}
+                    int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
 
-			}
+                    if (escolha == 0) { // Opção SIM = 0
 
-		System.out.println("------------- Lista aprovados -------------");
+                        int continuarRemover = 0;
+                        int posicao = 1;
 
-		for (Aluno aluno: maps.get(StatusAluno.APROVADO)) {
-			System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
-		}
+                        while (continuarRemover == 0) {
+                            String disciplinaRemover = JOptionPane.showInputDialog(null, "Informe a disciplina a ser removida [1, 2, 3 ou 4]");
+                            aluno1.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() - posicao);
+                            posicao++; // Incremente 1 ao valor atual da variável posicao
+                            continuarRemover = JOptionPane.showConfirmDialog(null, "Deseja continuar a remover?");
+                        }
+                    }
 
+                    alunos.add(aluno1);
+                }
 
-		System.out.println("------------- Lista recuperação -------------");
-		for (Aluno aluno: maps.get(StatusAluno.RECUPERACAO)) {
-			System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
-		}
+                maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+                maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+                maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+
+                for (Aluno aluno : alunos) { /* Separado em listas */
+
+                    if (aluno.getAlunoAprovadoString().equalsIgnoreCase(StatusAluno.APROVADO)) {
+                        maps.get(StatusAluno.APROVADO).add(aluno);
+                    } else if (aluno.getAlunoAprovadoString().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+                        maps.get(StatusAluno.RECUPERACAO).add(aluno);
+                    } else {
+                        maps.get(StatusAluno.REPROVADO).add(aluno);
+                    }
+
+                }
+
+                System.out.println("------------- Lista aprovados -------------");
+
+                for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
+                    System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
+                }
 
 
-		System.out.println("------------- Lista reprovados-------------");
-		for (Aluno aluno: maps.get(StatusAluno.REPROVADO)) {
-			System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
-		}
+                System.out.println("------------- Lista recuperação -------------");
+                for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
+                    System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
+                }
 
-		}
-	}
 
-	}
+                System.out.println("------------- Lista reprovados-------------");
+                for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
+                    System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
+                }
+
+            }
+        } catch (NumberFormatException e) {
+
+            StringBuilder saida = new StringBuilder();
+
+            for (int i = 0; i < e.getStackTrace().length; i++) {
+                saida.append("\nClasse de erro " + e.getStackTrace()[i].getClassName());
+                saida.append("\nMetodo de erro " + e.getStackTrace()[i].getMethodName());
+            }
+
+            e.printStackTrace();
+
+            JOptionPane.showMessageDialog(null, "Erro de conversao de numero" + saida);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Erro de nullPointer");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro : " + e.getMessage());
+        }
+    }
+}
 
