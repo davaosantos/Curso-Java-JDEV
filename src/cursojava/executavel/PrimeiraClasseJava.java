@@ -125,7 +125,7 @@ public class PrimeiraClasseJava {
 
                 for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
                     System.out.println("Resultado: " + aluno.getAlunoAprovadoString() + " com média de = " + aluno.getMediaNota());
-                }
+                }//
 
 
                 System.out.println("------------- Lista recuperação -------------");
@@ -145,8 +145,10 @@ public class PrimeiraClasseJava {
             StringBuilder saida = new StringBuilder();
 
             for (int i = 0; i < e.getStackTrace().length; i++) {
-                saida.append("\nClasse de erro " + e.getStackTrace()[i].getClassName());
-                saida.append("\nMetodo de erro " + e.getStackTrace()[i].getMethodName());
+                saida.append("\n Classe de erro " + e.getStackTrace()[i].getClassName());
+                saida.append("\n Metodo de erro " + e.getStackTrace()[i].getMethodName());
+                saida.append("\n Linha de erro " + e.getStackTrace()[i].getLineNumber());
+                saida.append("\n Class: " + e.getClass().getName());
             }
 
             e.printStackTrace();
@@ -154,9 +156,11 @@ public class PrimeiraClasseJava {
             JOptionPane.showMessageDialog(null, "Erro de conversao de numero" + saida);
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Erro de nullPointer");
-        } catch (Exception e) {
+        } catch (Exception e) { /*Capturar todas as exceções que nao prevemos*/
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro : " + e.getMessage());
+        }finally {
+            JOptionPane.showMessageDialog(null, "Obrigado por aprender java");
         }
     }
 }
