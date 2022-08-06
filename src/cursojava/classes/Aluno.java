@@ -133,21 +133,13 @@ public class Aluno extends Pessoa{
 		double somaNotas = 0.0;
 
 		for (Disciplina disiplina : disciplinas) {
-			somaNotas += disiplina.getNota();
+			somaNotas += disiplina.getMediaNotas();
 		}
 
 		return somaNotas / disciplinas.size();
 	}
 
-	// M�todo que retorna se o aluno foi aprovado ou n�o (BOOLEAN)
-	public boolean getAlunoAprovadoBoolean() {
-		double media = this.getMediaNota();
-		if (media >= 70) { // Aprovado
-			return true;
-		} else { // Reprovado
-			return false;
-		}
-	}
+
 
 	// M�todo que retorna se o aluno foi aprovado ou n�o (STRING)
 	public String getAlunoAprovadoString() {
@@ -164,43 +156,13 @@ public class Aluno extends Pessoa{
 	}
 
 	@Override
-	public String toString() {
+	public String toString(){
 		return "Aluno [nome=" + nome + ", idade=" + idade + ", dataNascimento=" + dataNascimento + ", registroGeral="
 				+ registroGeral + ", numeroCpf=" + numeroCpf + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai
 				+ ", dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado="
 				+ serieMatriculado + ", disciplinas=" + disciplinas + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((numeroCpf == null) ? 0 : numeroCpf.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aluno other = (Aluno) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (numeroCpf == null) {
-			if (other.numeroCpf != null)
-				return false;
-		} else if (!numeroCpf.equals(other.numeroCpf))
-			return false;
-		return true;
-	}
 
 	/*Identifica metodo sobreescrito*/
 	@Override

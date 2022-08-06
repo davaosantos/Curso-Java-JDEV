@@ -1,27 +1,53 @@
 package cursojava.executavel;
 
+import cursojava.classes.Aluno;
+import cursojava.classes.Disciplina;
+
+
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class ArrayVetor {
 
     public static void main(String[] args) {
-        /*Array pode ser de todos os tipos , de dados e objetos tambem*/
+        double[] notas = {5.0 , 3.0, 9.0, 6.6};
+        double[] notasPortugues = {5.0 , 23, 9.0, 6.6};
+        double[] notasCulinaria = {10, 9, 5, 7.3};
 
+        /*Criação do aluno*/
+        Aluno aluno = new Aluno();
+        aluno.setNome("Fernanda");
+        aluno.setNomeEscola("SHINGEKI curso");
 
-        String posicoes = JOptionPane.showInputDialog("Digite o total de posicoes do vetor: ");
+        /*Criação da disciplina*/
+        Disciplina disciplina = new Disciplina();
+        disciplina.setDisciplina("Curso de java");
+        disciplina.setNota(notas);
 
-        /*Array sempre deve ter a quantidade de posiÃ§Ãµes definidas*/
-        double notas[] = new double[Integer.parseInt(posicoes)];
+        aluno.getDisciplinas().add(disciplina);
 
-        for(int pos=0; pos < notas.length; pos++){
-            String valor = JOptionPane.showInputDialog("Qual o valor da posicao " + (pos+1));
-            notas[pos] = Double.parseDouble(valor);
-        }
+        Disciplina disciplina2 = new Disciplina();
+        disciplina.setDisciplina("Lógica");
+        disciplina2.setNota(notasPortugues);
 
-        int tamanho = notas.length;
+        aluno.getDisciplinas().add(disciplina2);
 
-        for(int i = 0; i < tamanho ; i++){
-            System.out.println("Nota " + (i + 1) + " : " + notas[i]);
+        Disciplina disciplina3 = new Disciplina();
+        disciplina3.setDisciplina("Culinaria");
+        disciplina3.setNota(notasCulinaria);
+
+        aluno.getDisciplinas().add(disciplina3);
+
+        System.out.println("Nome do aluno : " + aluno.getNome() + " inscrito no curso: " + aluno.getNomeEscola());
+        System.out.println("----- Disciplina do aluno ------");
+
+        for (Disciplina disc: aluno.getDisciplinas()) {
+
+            System.out.println("Disciplina: " + aluno.getDisciplinas());
+            System.out.println("As notas da disciplina são: ");
+            for(int pos = 0; pos < disc.getNota().length; pos++){
+                System.out.println("Nota: " + (pos + 1) + " é igual a = " + disc.getNota()[pos]);
+            }
         }
     }
 }
