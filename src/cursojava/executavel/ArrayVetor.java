@@ -38,33 +38,51 @@ public class ArrayVetor {
 
         aluno.getDisciplinas().add(disciplina3);
 
-        System.out.println("Nome do aluno : " + aluno.getNome() + " inscrito no curso: " + aluno.getNomeEscola());
-        System.out.println("----- Disciplina do aluno ------");
 
-        for (Disciplina disc: aluno.getDisciplinas()) {
+        // Aluno 2
 
-            System.out.println("Disciplina: " + aluno.getDisciplinas());
-            System.out.println("As notas da disciplina são: ");
+        /*Criação do aluno*/
+        Aluno aluno2 = new Aluno();
+        aluno.setNome("David");
+        aluno.setNomeEscola("SHINGEKI curso");
 
-            double notaMax = 0.0;
-            double notaMenor = 0.0;
-            for(int pos = 0; pos < disc.getNota().length; pos++){
-                System.out.println("Nota: " + (pos + 1) + " é igual a = " + disc.getNota()[pos]);
+        /*Criação da disciplina*/
+        Disciplina disciplinaB = new Disciplina();
+        disciplina.setDisciplina("Curso de java");
+        disciplina.setNota(notas);
 
-                if(pos == 0){
-                    notaMax = disc.getNota()[pos];
-                    notaMenor = disc.getNota()[pos];
-                }else{
-                    if (disc.getNota()[pos] > notaMax){
-                        notaMax = disc.getNota()[pos];
-                    }else if(disc.getNota()[pos] < notaMenor){
-                        notaMenor = disc.getNota()[pos];
-                    }
+        aluno.getDisciplinas().add(disciplinaB);
+
+        Disciplina disciplinaB2 = new Disciplina();
+        disciplina.setDisciplina("Lógica");
+        disciplina2.setNota(notasPortugues);
+
+        aluno.getDisciplinas().add(disciplinaB2);
+
+        Disciplina disciplinaB3 = new Disciplina();
+        disciplina3.setDisciplina("Culinaria");
+        disciplina3.setNota(notasCulinaria);
+
+        aluno.getDisciplinas().add(disciplinaB3);
+
+        //------------------------------------------
+
+        Aluno[] arrayAluno = new Aluno[1]; // cria um array de aluno , com tamanho 1
+
+        arrayAluno[0] = aluno; // recebe o objeto aluno
+        arrayAluno[1] = aluno2; // recebe o objeto aluno
+
+        for (int pos = 0; pos < arrayAluno.length; pos++){
+            System.out.println("Nome do aluno é: " + arrayAluno[pos].getNome());
+
+            for (Disciplina disc: arrayAluno[pos].getDisciplinas()) {
+                System.out.println("Nome da disciplina é : " + disc.getDisciplina());
+
+                for(int posNota = 0 ; posNota < disc.getNota().length; posNota++){
+                    System.out.println("A nota numero " + (posNota+1) + " foi : " + disc.getNota()[posNota]);
                 }
             }
-
-            System.out.println("A maior nota da disciplina " + disc.getDisciplina() + " foi : " + notaMax);
-            System.out.println("A menor nota da disciplina " + disc.getDisciplina() + " foi : " + notaMenor);
         }
+
     }
 }
